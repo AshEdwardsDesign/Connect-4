@@ -43,5 +43,10 @@ namespace Connect_4
                 Console.Write(x + " ");
             }
         }
+
+        public static void TakeTurn(int col)
+        {
+
+        }
     }
 }
