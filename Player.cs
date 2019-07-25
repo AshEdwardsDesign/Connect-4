@@ -9,14 +9,17 @@ namespace Connect_4
     public class Player
     {
         private string name;
-        private ConsoleColor playerColor;
-        private int wins;
+        private GamePiece gamePiece;
 
-        public Player()
+        public Player(string n, char ch, ConsoleColor color)
         {
-            Console.Write("Player 1 Name:\t");
-            name = Console.ReadLine();
-            playerColor = ConsoleColor.Red;
+            name = n;
+            gamePiece = new GamePiece(color, ch);
+        }
+
+        public GamePiece GetGamePiece()
+        {
+            return gamePiece;
         }
     }
 }

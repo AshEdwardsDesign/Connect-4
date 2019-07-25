@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Connect_4
 {
@@ -21,7 +17,7 @@ namespace Connect_4
             {
                 for (int j = 0; j < width; j++)
                 {
-                    board[i, j] = new GamePiece(ConsoleColor.Gray);
+                    board[i, j] = new GamePiece(ConsoleColor.Gray, '*');
                 }
             }
         }
@@ -32,7 +28,7 @@ namespace Connect_4
             {
                 for (int j = 0; j < w; j++)
                 {
-                    this.board[j, i].DisplayPiece();
+                    board[j, i].DisplayPiece();
                     Console.Write(" ");
                 }
                 Console.WriteLine(" ");
@@ -44,9 +40,23 @@ namespace Connect_4
             }
         }
 
-        public static void TakeTurn(int col)
+        public void TakeTurn(int col, Player player)
         {
+            for (int i = 0; i < h; i++)
+            {
+                if (board[i,col] == GameController.player1.GetGamePiece() || board [i,col] == GameController.player2.GetGamePiece())
+                {
+                    continue;
+                } else
+                {
+                    board[i, col] = player.GetGamePiece();
+                }
+            }
+        }
 
+        private void PlacePiece(int col, int row, GamePiece pc)
+        {
+            board[row, col] = pc;
         }
     }
 }

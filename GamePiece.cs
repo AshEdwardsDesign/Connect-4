@@ -7,9 +7,10 @@ namespace Connect_4
         private ConsoleColor pieceColor = ConsoleColor.Gray;
         private char icon = '*';
 
-        public GamePiece(ConsoleColor col)
+        public GamePiece(ConsoleColor col, char ic)
         {
             pieceColor = col;
+            icon = ic;
         }
 
         public void DisplayPiece()
