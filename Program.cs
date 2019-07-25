@@ -20,6 +20,9 @@ namespace Connect_4
 
             GameBoard gb = new GameBoard(height, width);
 
+            GameController.player1 = new Player("Ash", '*', ConsoleColor.Yellow, false);
+            GameController.player2 = new Player("Jenny", '*', ConsoleColor.Red, true);
+
             StartGame(gb);
 
             Console.ReadLine();
@@ -34,12 +37,16 @@ namespace Connect_4
                 gb.DisplayGameBoard();
 
                 Console.WriteLine();
-                Console.Write("Choose a column:\t");
-                int col = Convert.ToInt32(Console.ReadLine());
 
-                gb.TakeTurn(col);
+                gb.TakeTurn(GameController.player1);
 
-                Console.ReadLine();
+                Console.Clear();
+                Console.WriteLine("Here is your gameboard:\n");
+                gb.DisplayGameBoard();
+
+                Console.WriteLine();
+
+                gb.TakeTurn(GameController.player2);
             }
         }
     }

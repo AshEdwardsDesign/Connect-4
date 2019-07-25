@@ -7,6 +7,7 @@ namespace Connect_4
         private int w;
         private int h;
         private GamePiece[,] board;
+        private bool moveMade;
 
         public GameBoard(int height, int width)
         {
@@ -28,7 +29,7 @@ namespace Connect_4
             {
                 for (int j = 0; j < w; j++)
                 {
-                    board[j, i].DisplayPiece();
+                    board[i, j].DisplayPiece();
                     Console.Write(" ");
                 }
                 Console.WriteLine(" ");
@@ -38,25 +39,47 @@ namespace Connect_4
             {
                 Console.Write(x + " ");
             }
+            Console.WriteLine();
         }
 
-        public void TakeTurn(int col, Player player)
+        public int GetNumberOfColumns()
         {
-            for (int i = 0; i < h; i++)
+            return w;
+        }
+
+        public void TakeTurn(Player player)
+        {
+            moveMade = false;
+
+            while (!moveMade)
             {
-                if (board[i,col] == GameController.player1.GetGamePiece() || board [i,col] == GameController.player2.GetGamePiece())
+                if (!player.isComputerPlayer())
                 {
-                    continue;
+                    Console.WriteLine("Choose a column:\t");
+                    int col = Convert.ToInt32(Console.ReadLine());
+                    makeMove(col, player);
                 } else
                 {
-                    board[i, col] = player.GetGamePiece();
+                    makeMove(player.ChooseMove(this), player);
                 }
             }
         }
 
-        private void PlacePiece(int col, int row, GamePiece pc)
+        private void makeMove(int col, Player player)
         {
-            board[row, col] = pc;
+            for (int i = h - 1; i >= 0; i--)
+            {
+                if (board[i, col] == GameController.player1.GetGamePiece() || board[i, col] == GameController.player2.GetGamePiece())
+                {
+                    continue;
+                }
+                else
+                {
+                    board[i, col] = player.GetGamePiece();
+                    moveMade = true;
+                    break;
+                }
+            }
         }
     }
 }

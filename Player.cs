@@ -10,16 +10,34 @@ namespace Connect_4
     {
         private string name;
         private GamePiece gamePiece;
+        private bool isAI = false;
+        Random rand = new Random();
 
-        public Player(string n, char ch, ConsoleColor color)
+        public Player(string n, char ch, ConsoleColor color, bool ai)
         {
             name = n;
             gamePiece = new GamePiece(color, ch);
+            isAI = ai;
         }
 
         public GamePiece GetGamePiece()
         {
             return gamePiece;
+        }
+
+        public string GetName()
+        {
+            return name;
+        }
+
+        public bool isComputerPlayer()
+        {
+            return isAI;
+        }
+
+        public int ChooseMove(GameBoard gb)
+        {
+            return rand.Next(gb.GetNumberOfColumns());
         }
     }
 }
