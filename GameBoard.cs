@@ -8,6 +8,7 @@ namespace Connect_4
         private int h;
         private GamePiece[,] board;
         private bool moveMade;
+        private bool gameWon = false;
 
         public GameBoard(int height, int width)
         {
@@ -50,22 +51,29 @@ namespace Connect_4
         public void TakeTurn(Player player)
         {
             moveMade = false;
+            gameWon = false;
 
-            while (!moveMade)
+            while (!moveMade && !gameWon)
             {
                 if (!player.isComputerPlayer())
                 {
                     Console.WriteLine("Choose a column:\t");
                     int col = Convert.ToInt32(Console.ReadLine());
-                    makeMove(col, player);
+                    gameWon = makeMove(col, player);
                 } else
                 {
-                    makeMove(player.ChooseMove(this), player);
+                    gameWon = makeMove(player.ChooseMove(this), player);
                 }
+            }
+
+            if (gameWon)
+            {
+                Console.WriteLine($"{player.GetName()} won!!!");
+                Console.ReadLine();
             }
         }
 
-        private void makeMove(int col, Player player)
+        private bool makeMove(int col, Player player)
         {
             for (int i = h - 1; i >= 0; i--)
             {
@@ -77,9 +85,10 @@ namespace Connect_4
                 {
                     board[i, col] = player.GetGamePiece();
                     moveMade = true;
-                    break;
+                    return GameController.isWinningMove(player, board, col, i);
                 }
             }
+            return false;
         }
     }
 }
