@@ -19,5 +19,10 @@ namespace Connect_4
             Console.Write(icon);
             Console.ResetColor();
         }
+
+        public GamePiece GetBoardGamePiece()
+        {
+            return this;
+        }
     }
 }

@@ -9,6 +9,28 @@ namespace Connect_4
 
         public static bool isWinningMove(Player player, GamePiece[,] board, int col, int row)
         {
+
+            // 
+            // Nearby board slots
+            //
+
+            // Pieces to the left
+            GamePiece oneToLeft = board[row, col - 1].GetBoardGamePiece();
+            GamePiece twoToLeft = board[row, col - 2].GetBoardGamePiece();
+            GamePiece threeToLeft = board[row, col - 3].GetBoardGamePiece();
+            // Pieces to the right
+            GamePiece oneToRight = board[row, col + 1].GetBoardGamePiece();
+            GamePiece twoToRight = board[row, col + 2].GetBoardGamePiece();
+            GamePiece threeToRight = board[row, col + 3].GetBoardGamePiece();
+            // Pieces above
+            GamePiece oneAbove = board[row - 1, col].GetBoardGamePiece();
+            GamePiece twoAbove = board[row - 2, col].GetBoardGamePiece();
+            GamePiece threeAbove = board[row - 3, col].GetBoardGamePiece();
+            // Pieces below
+            GamePiece oneBelow = board[row + 1, col].GetBoardGamePiece();
+            GamePiece twoBelow = board[row + 2, col].GetBoardGamePiece();
+            GamePiece threeBelow = board[row + 3, col].GetBoardGamePiece();
+
             //
             // HORIZONTAL MOVE CHECKING
             //
