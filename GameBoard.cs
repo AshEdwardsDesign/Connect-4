@@ -57,7 +57,7 @@ namespace Connect_4
             {
                 if (!player.isComputerPlayer())
                 {
-                    Console.WriteLine("Choose a column:\t");
+                    Console.Write("Choose a column:\t");
                     int col = Convert.ToInt32(Console.ReadLine());
                     gameWon = makeMove(col, player);
                 } else
@@ -85,7 +85,19 @@ namespace Connect_4
                 {
                     board[i, col] = player.GetGamePiece();
                     moveMade = true;
-                    return GameController.isWinningMove(player, board, col, i);
+                    Console.Write($"Piece placed in column {col} at position {i}...");
+                    Console.ReadLine();
+                    if (GameController.isWinningMove(player, board, col, i))
+                    {
+                        Console.WriteLine("It's a winning move! :)");
+                        Console.ReadLine();
+                        return true;
+                    } else
+                    {
+                        Console.Write("Not a winning move... :(");
+                        Console.ReadLine();
+                        return false;
+                    }
                 }
             }
             return false;

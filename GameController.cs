@@ -36,7 +36,34 @@ namespace Connect_4
             // If pieces to left are valid...
             if (oneToLeft != null && twoToLeft != null && threeToLeft != null)
             {
-                if ()
+                if (oneToLeft == player.GetGamePiece() && twoToLeft == player.GetGamePiece() && threeToLeft == player.GetGamePiece())
+                {
+                    return true;
+                }
+            }
+            // If pieces to right are valid...
+            if (oneToRight != null && twoToRight != null && threeToRight != null)
+            {
+                if (oneToRight == player.GetGamePiece() && twoToRight == player.GetGamePiece() && threeToRight == player.GetGamePiece())
+                {
+                    return true;
+                }
+            }
+            // If pieces above are valid...
+            if (oneAbove != null && twoAbove != null && threeAbove != null)
+            {
+                if (oneAbove == player.GetGamePiece() && twoAbove == player.GetGamePiece() && threeAbove == player.GetGamePiece())
+                {
+                    return true;
+                }
+            }
+            // If pieces below are valid...
+            if (oneBelow != null && twoBelow != null && threeBelow != null)
+            {
+                if (oneBelow == player.GetGamePiece() && twoBelow == player.GetGamePiece() && threeBelow == player.GetGamePiece())
+                {
+                    return true;
+                }
             }
             return false;
         }

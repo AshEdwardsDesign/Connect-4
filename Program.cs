@@ -38,6 +38,8 @@ namespace Connect_4
 
                 Console.WriteLine();
 
+                Console.Write($"{GameController.player1.GetName()}'s turn! Press enter.");
+                Console.ReadLine();
                 gb.TakeTurn(GameController.player1);
 
                 Console.Clear();
@@ -46,6 +48,8 @@ namespace Connect_4
 
                 Console.WriteLine();
 
+                Console.Write($"{GameController.player2.GetName()}'s turn! Press enter.");
+                Console.ReadLine();
                 gb.TakeTurn(GameController.player2);
             }
         }
