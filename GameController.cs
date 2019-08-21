@@ -27,8 +27,22 @@ namespace Connect_4
         static GamePiece oneBelow;
         static GamePiece twoBelow;
         static GamePiece threeBelow;
-
-        // TO DO: Horizontal slots
+        // Top-left diagonal
+        static GamePiece oneTopLeft;                // TO DO
+        static GamePiece twoTopLeft;                // TO DO
+        static GamePiece threeTopLeft;              // TO DO
+        // Top-right diagonal
+        static GamePiece oneTopRight;               // TO DO
+        static GamePiece twoTopRight;               // TO DO
+        static GamePiece threeTopRight;             // TO DO
+        // Bottom-left diagonal
+        static GamePiece oneBottomLeft;             // TO DO
+        static GamePiece twoBottomLeft;             // TO DO
+        static GamePiece threeBottomLeft;           // TO DO
+        // Bottom-right diagonal
+        static GamePiece oneBottomRight;            // TO DO
+        static GamePiece twoBottomRight;            // TO DO
+        static GamePiece threeBottomRight;          // TO DO
 
         public static bool isWinningMove(Player player, GamePiece[,] board, int col, int row)
         {

@@ -57,10 +57,28 @@ namespace Connect_4
             {
                 if (!player.isComputerPlayer())
                 {
-                    Console.Write("Choose a column:\t");
-                    int col = Convert.ToInt32(Console.ReadLine());
+                    int col = 0;
+                    bool invalidCol = true;
+
+                    while (invalidCol)
+                    {
+                        try
+                        {
+                            Console.Write("Choose a column:\t");
+                            col = Convert.ToInt32(Console.ReadLine());
+                            invalidCol = false;
+                        }
+                        catch
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("ERROR: Could not convert your input into an integer (whole number)...");
+                            Console.ReadKey();
+                            Console.ResetColor();
+                        }
+                    }
                     gameWon = makeMove(col, player);
-                } else
+                }
+                else
                 {
                     gameWon = makeMove(player.ChooseMove(this), player);
                 }
@@ -92,7 +110,8 @@ namespace Connect_4
                         Console.WriteLine("It's a winning move! :)");
                         Console.ReadLine();
                         return true;
-                    } else
+                    }
+                    else
                     {
                         Console.Write("Not a winning move... :(");
                         Console.ReadLine();
