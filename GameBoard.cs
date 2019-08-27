@@ -28,13 +28,22 @@ namespace Connect_4
         {
             for (int i = 0; i < h; i++)
             {
+
                 for (int j = 0; j < w; j++)
                 {
+                    // Display the row number
+                    if (j == 0)
+                    {
+                        Console.Write(i + " ");
+                    }
+
                     board[i, j].DisplayPiece();
                     Console.Write(" ");
                 }
                 Console.WriteLine(" ");
             }
+
+            Console.Write("  ");
 
             for (int x = 0; x < w; x++)
             {
