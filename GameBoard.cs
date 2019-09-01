@@ -73,16 +73,13 @@ namespace Connect_4
                     {
                         try
                         {
-                            Console.Write("Choose a column:\t");
+                            UI.RequestInput("Choose a column:\t");
                             col = Convert.ToInt32(Console.ReadLine());
                             invalidCol = false;
                         }
                         catch
                         {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("ERROR: Could not convert your input into an integer (whole number)...");
-                            Console.ReadKey();
-                            Console.ResetColor();
+                            UI.DisplayWarning("ERROR: Could not convert your input into an integer (whole number)");
                         }
                     }
                     gameWon = makeMove(col, player);
@@ -95,7 +92,7 @@ namespace Connect_4
 
             if (gameWon)
             {
-                Console.WriteLine($"{player.GetName()} won!!!");
+                UI.DisplaySuccess($"{player.GetName()} won!!!");
                 Console.ReadLine();
             }
         }
@@ -112,22 +109,22 @@ namespace Connect_4
                 {
                     board[i, col] = player.GetGamePiece();
                     moveMade = true;
-                    Console.Write($"Piece placed in column {col} at position {i}...");
-                    Console.ReadLine();
+                    UI.DisplayNotice($"Piece placed in column {col} at position {i}");
                     if (GameController.isWinningMove(player, board, col, i))
                     {
-                        Console.WriteLine("It's a winning move! :)");
+                        UI.DisplaySuccess("It's a winning move! :)");
                         Console.ReadLine();
                         return true;
                     }
                     else
                     {
-                        Console.Write("Not a winning move... :(");
+                        UI.DisplayNotice("Not a winning move... :(");
                         Console.ReadLine();
                         return false;
                     }
                 }
             }
+            UI.DisplayWarning($"ERROR: Column {col} is full. Please choose again");
             return false;
         }
     }

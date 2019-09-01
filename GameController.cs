@@ -19,30 +19,26 @@ namespace Connect_4
         static GamePiece oneToRight;
         static GamePiece twoToRight;
         static GamePiece threeToRight;
-        // Pieces above
-        static GamePiece oneAbove;
-        static GamePiece twoAbove;
-        static GamePiece threeAbove;
         // Pieces below
         static GamePiece oneBelow;
         static GamePiece twoBelow;
         static GamePiece threeBelow;
         // Top-left diagonal
-        static GamePiece oneTopLeft;                // TO DO
-        static GamePiece twoTopLeft;                // TO DO
-        static GamePiece threeTopLeft;              // TO DO
+        static GamePiece oneTopLeft;                
+        static GamePiece twoTopLeft;                
+        static GamePiece threeTopLeft;              
         // Top-right diagonal
-        static GamePiece oneTopRight;               // TO DO
-        static GamePiece twoTopRight;               // TO DO
-        static GamePiece threeTopRight;             // TO DO
+        static GamePiece oneTopRight;               
+        static GamePiece twoTopRight;               
+        static GamePiece threeTopRight;             
         // Bottom-left diagonal
-        static GamePiece oneBottomLeft;             // TO DO
-        static GamePiece twoBottomLeft;             // TO DO
-        static GamePiece threeBottomLeft;           // TO DO
+        static GamePiece oneBottomLeft;             
+        static GamePiece twoBottomLeft;             
+        static GamePiece threeBottomLeft;           
         // Bottom-right diagonal
-        static GamePiece oneBottomRight;            // TO DO
-        static GamePiece twoBottomRight;            // TO DO
-        static GamePiece threeBottomRight;          // TO DO
+        static GamePiece oneBottomRight;            
+        static GamePiece twoBottomRight;            
+        static GamePiece threeBottomRight;          
 
         public static bool isWinningMove(Player player, GamePiece[,] board, int col, int row)
         {
@@ -206,31 +202,6 @@ namespace Connect_4
             {
                 threeToRight = null;
             }
-            // Pieces above
-            try
-            {
-                oneAbove = board[row - 1, col].GetBoardGamePiece();
-            }
-            catch
-            {
-                oneAbove = null;
-            }
-            try
-            {
-                twoAbove = board[row - 2, col].GetBoardGamePiece();
-            }
-            catch
-            {
-                twoAbove = null;
-            }
-            try
-            {
-                threeAbove = board[row - 3, col].GetBoardGamePiece();
-            }
-            catch
-            {
-                threeAbove = null;
-            }
             // Pieces below
             try
             {
@@ -257,9 +228,105 @@ namespace Connect_4
                 threeBelow = null;
             }
             // Pieces to the top left
+            try
+            {
+                oneTopLeft = board[row - 1, col -1].GetBoardGamePiece();
+            }
+            catch
+            {
+                oneTopLeft = null;
+            }
+            try
+            {
+                twoTopLeft = board[row - 2, col - 2].GetBoardGamePiece();
+            }
+            catch
+            {
+                twoTopLeft = null;
+            }
+            try
+            {
+                threeTopLeft = board[row - 3, col - 3].GetBoardGamePiece();
+            }
+            catch
+            {
+                threeTopLeft = null;
+            }
             // Pieces to the bottom right
+            try
+            {
+                oneBottomRight = board[row + 1, col + 1].GetBoardGamePiece();
+            }
+            catch
+            {
+                oneBottomRight = null;
+            }
+            try
+            {
+                twoBottomRight = board[row + 2, col + 2].GetBoardGamePiece();
+            }
+            catch
+            {
+                twoBottomRight = null;
+            }
+            try
+            {
+                threeBottomRight = board[row + 3, col + 3].GetBoardGamePiece();
+            }
+            catch
+            {
+                threeBottomRight = null;
+            }
             // Pieces to the top right
+            try
+            {
+                oneTopRight = board[row - 1, col + 1].GetBoardGamePiece();
+            }
+            catch
+            {
+                oneTopRight = null;
+            }
+            try
+            {
+                twoTopRight = board[row - 2, col + 2].GetBoardGamePiece();
+            }
+            catch
+            {
+                twoTopRight = null;
+            }
+            try
+            {
+                threeTopRight = board[row - 3, col + 3].GetBoardGamePiece();
+            }
+            catch
+            {
+                threeTopRight = null;
+            }
             // Pieces to the bottom left
+            try
+            {
+                oneBottomLeft = board[row - 1, col + 1].GetBoardGamePiece();
+            }
+            catch
+            {
+                oneBottomLeft = null;
+            }
+            try
+            {
+                twoBottomLeft = board[row - 2, col + 2].GetBoardGamePiece();
+            }
+            catch
+            {
+                twoBottomLeft = null;
+            }
+            try
+            {
+                threeBottomLeft = board[row - 3, col + 3].GetBoardGamePiece();
+            }
+            catch
+            {
+                threeBottomLeft = null;
+            }
         }
     }
 }
