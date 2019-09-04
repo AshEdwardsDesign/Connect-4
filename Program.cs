@@ -6,11 +6,12 @@ namespace Connect_4
     {
         static void Main(string[] args)
         {
+            bool displayMainMenu = true;
 
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("Welcome to Connect 4!");
-            Console.ResetColor();
-            Console.WriteLine();
+            while (displayMainMenu)
+            {
+                displayMainMenu = MainMenu();
+            }
 
             Console.Write("Board width:\t");
             int width = Convert.ToInt32(Console.ReadLine());
@@ -25,6 +26,66 @@ namespace Connect_4
 
             StartGame(gb);
 
+            Console.ReadLine();
+        }
+
+        /// <summary>
+        /// Shows the main menu. Returns bool to indicate if menu should be shown again.
+        /// </summary>
+        /// <param name="gb"></param>
+
+        private static bool MainMenu()
+        {
+            UI.DisplayTitle("Welcome to Connect 4!");
+            Console.WriteLine();
+
+            Console.WriteLine("1: One Player");
+            Console.WriteLine("2: Two Player");
+            Console.WriteLine("3: Quit");
+            Console.WriteLine();
+
+            UI.RequestInput("Menu choice:");
+
+            int menuChoice = 0;
+
+            try
+            {
+                menuChoice = int.Parse(Console.ReadLine());
+            }
+            catch
+            {
+                UI.DisplayWarning("ERROR: Could not convert your input to an integer (whole number). Press enter to try again...");
+                return true;
+            }
+
+            switch (menuChoice)
+            {
+                case 1:
+                    StartSinglePlayer();
+                    break;
+                case 2:
+                    StartMultiplayer();
+                    break;
+                case 3:
+                    return false;
+                default:
+                    UI.DisplayWarning($"ERROR: Your input doesnt match a menu option! For reference, you entered {menuChoice}. Press enter to try again...");
+                    break;
+            };
+
+            return true;
+        }
+
+
+        private static void StartSinglePlayer()
+        {
+            UI.DisplayTitle("Start a single player game VS the AI");
+            Console.ReadLine();
+        }
+
+        private static void StartMultiplayer()
+        {
+            UI.DisplayTitle("Start a multiplayer game between 2 local human players");
             Console.ReadLine();
         }
 

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Connect_4
 {
@@ -12,12 +8,14 @@ namespace Connect_4
         private static ConsoleColor noticeColor = ConsoleColor.Yellow;
         private static ConsoleColor inputColor = ConsoleColor.Cyan;
         private static ConsoleColor successColor = ConsoleColor.Green;
+        private static ConsoleColor titleColor = ConsoleColor.Magenta;
 
         public static void DisplayWarning(string text)
         {
             Console.ForegroundColor = warningColor;
             Console.WriteLine(text);
             Console.ResetColor();
+            Console.ReadLine();
         }
 
         public static void DisplayNotice(string text)
@@ -30,7 +28,7 @@ namespace Connect_4
         public static void RequestInput(string text)
         {
             Console.ForegroundColor = inputColor;
-            Console.WriteLine(text);
+            Console.Write(text + "\t");
             Console.ResetColor();
         }
 
@@ -38,6 +36,14 @@ namespace Connect_4
         {
             Console.ForegroundColor = successColor;
             Console.WriteLine(text);
+            Console.ResetColor();
+        }
+
+        public static void DisplayTitle(string text)
+        {
+            Console.Clear();
+            Console.ForegroundColor = titleColor;
+            Console.WriteLine(text.ToUpper());
             Console.ResetColor();
         }
     }
