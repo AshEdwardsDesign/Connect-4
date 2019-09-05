@@ -43,8 +43,11 @@ namespace Connect_4
         {
             Console.Clear();
             Console.ForegroundColor = titleColor;
+            Console.WriteLine(new String('/', text.Length));
             Console.WriteLine(text.ToUpper());
+            Console.WriteLine(new String('/', text.Length));
             Console.ResetColor();
+            Console.WriteLine();
         }
     }
 }

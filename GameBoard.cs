@@ -110,15 +110,16 @@ namespace Connect_4
                     board[i, col] = player.GetGamePiece();
                     moveMade = true;
                     UI.DisplayNotice($"Piece placed in column {col} at position {i}");
+                    Console.WriteLine();
                     if (GameController.isWinningMove(player, board, col, i))
                     {
-                        UI.DisplaySuccess("It's a winning move! :)");
+                        UI.DisplaySuccess("It's a winning move! :) Press enter to continue...");
                         Console.ReadLine();
                         return true;
                     }
                     else
                     {
-                        UI.DisplayNotice("Not a winning move... :(");
+                        UI.DisplayNotice("Not a winning move... :( Press enter to continue...");
                         Console.ReadLine();
                         return false;
                     }

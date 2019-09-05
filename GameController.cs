@@ -4,6 +4,7 @@ namespace Connect_4
 {
     public static class GameController
     {
+        private static GameBoard gameBoard;
         public static Player player1;
         public static Player player2;
 
@@ -38,7 +39,91 @@ namespace Connect_4
         // Bottom-right diagonal
         static GamePiece oneBottomRight;            
         static GamePiece twoBottomRight;            
-        static GamePiece threeBottomRight;          
+        static GamePiece threeBottomRight;
+
+        /// <summary>
+        /// Requests game board width and height from the player and then generates the gameboard.
+        /// </summary>
+        public static void GenerateGameBoard()
+        {
+            UI.RequestInput("Board width:");
+            int width = Convert.ToInt32(Console.ReadLine());
+
+            UI.RequestInput("Board height:");
+            int height = Convert.ToInt32(Console.ReadLine());
+
+            gameBoard = new GameBoard(height, width);
+        }
+
+        /// <summary>
+        /// Starts a singleplayer game
+        /// </summary>
+        public static void StartSinglePlayer()
+        {
+            UI.DisplayTitle("Starting a single player game VS the AI...");
+            GenerateGameBoard();
+            CreatePlayer1(false);
+            CreatePlayer2(true);
+            StartGame();
+        }
+        
+        /// <summary>
+        /// Starts a multiplayer game.
+        /// </summary>
+        public static void StartMultiplayer()
+        {
+            UI.DisplayTitle("Starting a multiplayer game between 2 local human players...");
+            GenerateGameBoard();
+            CreatePlayer1(false);
+            CreatePlayer2(false);
+            StartGame();
+        }
+
+        /// <summary>
+        /// Create the first player (always a human)
+        /// </summary>
+        private static void CreatePlayer1(bool isAI)
+        {
+            player1 = new Player("Ash", '*', ConsoleColor.Yellow, false);
+        }
+
+        /// <summary>
+        /// Create the second player (can be human or AI)
+        /// </summary>
+        /// <param name="isAI"></param>
+        private static void CreatePlayer2(bool isAI)
+        {
+            player2 = new Player("Jenny", '*', ConsoleColor.Red, true);
+        }
+
+        /// <summary>
+        /// Starts the main gameplay loop
+        /// </summary>
+        public static void StartGame()
+        {
+            while (true)
+            {
+                UI.DisplayTitle("Here is your gameboard:");
+
+                gameBoard.DisplayGameBoard();
+
+                Console.WriteLine();
+
+                UI.DisplayNotice($"{player1.GetName()}'s turn! Press enter.");
+                Console.ReadLine();
+                gameBoard.TakeTurn(player1);
+
+                UI.DisplayTitle("Here is your gameboard:\n");
+
+                gameBoard.DisplayGameBoard();
+
+                Console.WriteLine();
+
+                UI.DisplayNotice($"{player2.GetName()}'s turn! Press enter.");
+                Console.ReadLine();
+                gameBoard.TakeTurn(player2);
+            }
+        }
 
         public static bool isWinningMove(Player player, GamePiece[,] board, int col, int row)
         {
