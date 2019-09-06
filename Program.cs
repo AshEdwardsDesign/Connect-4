@@ -53,7 +53,8 @@ namespace Connect_4
                     GameController.StartMultiplayer();
                     break;
                 case 3:
-                    return false;
+                    Environment.Exit(0);
+                    break;
                 default:
                     UI.DisplayWarning($"ERROR: Your input doesnt match a menu option! For reference, you entered {menuChoice}. Press enter to try again...");
                     break;

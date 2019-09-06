@@ -84,7 +84,11 @@ namespace Connect_4
         /// </summary>
         private static void CreatePlayer1(bool isAI)
         {
-            player1 = new Player("Ash", '*', ConsoleColor.Yellow, false);
+            UI.RequestInput("Player 1 name:");
+            string name = Console.ReadLine();
+            UI.RequestInput("Player 1 piece (choose a single character):");
+            string chr = Console.ReadLine();
+            player1 = new Player(name, chr[0], ConsoleColor.Yellow, false);
         }
 
         /// <summary>
@@ -93,7 +97,7 @@ namespace Connect_4
         /// <param name="isAI"></param>
         private static void CreatePlayer2(bool isAI)
         {
-            player2 = new Player("Jenny", '*', ConsoleColor.Red, true);
+            player2 = new Player("AI", '*', ConsoleColor.Red, true);
         }
 
         /// <summary>
@@ -109,18 +113,16 @@ namespace Connect_4
 
                 Console.WriteLine();
 
-                UI.DisplayNotice($"{player1.GetName()}'s turn! Press enter.");
-                Console.ReadLine();
+                UI.DisplayNotice($"{player1.GetName()}'s turn!");
                 gameBoard.TakeTurn(player1);
 
-                UI.DisplayTitle("Here is your gameboard:\n");
+                UI.DisplayTitle("Here is your gameboard:");
 
                 gameBoard.DisplayGameBoard();
 
                 Console.WriteLine();
 
-                UI.DisplayNotice($"{player2.GetName()}'s turn! Press enter.");
-                Console.ReadLine();
+                UI.DisplayNotice($"{player2.GetName()}'s turn!");
                 gameBoard.TakeTurn(player2);
             }
         }

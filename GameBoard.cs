@@ -52,6 +52,10 @@ namespace Connect_4
             Console.WriteLine();
         }
 
+        /// <summary>
+        /// Get the number of columns in the gameboard
+        /// </summary>
+        /// <returns></returns>
         public int GetNumberOfColumns()
         {
             return w;

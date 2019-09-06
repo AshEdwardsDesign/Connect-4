@@ -8,10 +8,11 @@ namespace Connect_4
 {
     public class Player
     {
-        private string name;
-        private GamePiece gamePiece;
-        private bool isAI = false;
-        Random rand = new Random();
+        private string name;            // The players name
+        private GamePiece gamePiece;    // A GamePiece object representing the players piece on the board
+        private bool isAI = false;      // Is this "player" an AI?
+        private int wins = 0;           // The number of wins this player has in the current session
+        Random rand = new Random();     // Random num generator
 
         public Player(string n, char ch, ConsoleColor color, bool ai)
         {
@@ -20,21 +21,38 @@ namespace Connect_4
             isAI = ai;
         }
 
+        /// <summary>
+        /// Get the players GamePiece object
+        /// </summary>
+        /// <returns></returns>
         public GamePiece GetGamePiece()
         {
             return gamePiece;
         }
 
+        /// <summary>
+        /// Get the players name
+        /// </summary>
+        /// <returns></returns>
         public string GetName()
         {
             return name;
         }
 
+        /// <summary>
+        /// Is this player an AI?
+        /// </summary>
+        /// <returns></returns>
         public bool isComputerPlayer()
         {
             return isAI;
         }
 
+        /// <summary>
+        /// Random move picker for the AI.
+        /// </summary>
+        /// <param name="gb"></param>
+        /// <returns></returns>
         public int ChooseMove(GameBoard gb)
         {
             return rand.Next(gb.GetNumberOfColumns());
