@@ -13,7 +13,7 @@ namespace Connect_4
         public static void DisplayWarning(string text)
         {
             Console.ForegroundColor = warningColor;
-            Console.WriteLine(text);
+            Console.Write(text);
             Console.ResetColor();
             Console.ReadLine();
         }

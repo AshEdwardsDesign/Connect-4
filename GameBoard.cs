@@ -80,10 +80,16 @@ namespace Connect_4
                             UI.RequestInput("Choose a column:\t");
                             col = Convert.ToInt32(Console.ReadLine());
                             invalidCol = false;
+
+                            if (col >= w)
+                            {
+                                UI.DisplayWarning($"The number you've entered is too high. The highest column number is {w-1}. Press enter to continue...");
+                                invalidCol = true;
+                            }
                         }
                         catch
                         {
-                            UI.DisplayWarning("ERROR: Could not convert your input into an integer (whole number)");
+                            UI.DisplayWarning("ERROR: Could not convert your input into an integer (whole number). Press enter to continue...");
                         }
                     }
                     gameWon = makeMove(col, player);
@@ -114,17 +120,16 @@ namespace Connect_4
                     board[i, col] = player.GetGamePiece();
                     moveMade = true;
                     UI.DisplayNotice($"Piece placed in column {col} at position {i}");
-                    Console.WriteLine();
                     if (GameController.isWinningMove(player, board, col, i))
                     {
                         UI.DisplaySuccess("It's a winning move! :) Press enter to continue...");
-                        Console.ReadLine();
+                        Console.ReadKey();
                         return true;
                     }
                     else
                     {
                         UI.DisplayNotice("Not a winning move... :( Press enter to continue...");
-                        Console.ReadLine();
+                        Console.ReadKey();
                         return false;
                     }
                 }
