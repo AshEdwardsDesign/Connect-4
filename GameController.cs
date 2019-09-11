@@ -7,6 +7,7 @@ namespace Connect_4
         private static GameBoard gameBoard;
         public static Player player1;
         public static Player player2;
+        private static bool gameWon = false;
 
         // 
         // Nearby board slots
@@ -25,20 +26,20 @@ namespace Connect_4
         static GamePiece twoBelow;
         static GamePiece threeBelow;
         // Top-left diagonal
-        static GamePiece oneTopLeft;                
-        static GamePiece twoTopLeft;                
-        static GamePiece threeTopLeft;              
+        static GamePiece oneTopLeft;
+        static GamePiece twoTopLeft;
+        static GamePiece threeTopLeft;
         // Top-right diagonal
-        static GamePiece oneTopRight;               
-        static GamePiece twoTopRight;               
-        static GamePiece threeTopRight;             
+        static GamePiece oneTopRight;
+        static GamePiece twoTopRight;
+        static GamePiece threeTopRight;
         // Bottom-left diagonal
-        static GamePiece oneBottomLeft;             
-        static GamePiece twoBottomLeft;             
-        static GamePiece threeBottomLeft;           
+        static GamePiece oneBottomLeft;
+        static GamePiece twoBottomLeft;
+        static GamePiece threeBottomLeft;
         // Bottom-right diagonal
-        static GamePiece oneBottomRight;            
-        static GamePiece twoBottomRight;            
+        static GamePiece oneBottomRight;
+        static GamePiece twoBottomRight;
         static GamePiece threeBottomRight;
 
         /// <summary>
@@ -66,7 +67,7 @@ namespace Connect_4
             CreatePlayer2(true);
             StartGame();
         }
-        
+
         /// <summary>
         /// Starts a multiplayer game.
         /// </summary>
@@ -97,7 +98,18 @@ namespace Connect_4
         /// <param name="isAI"></param>
         private static void CreatePlayer2(bool isAI)
         {
-            player2 = new Player("AI", '*', ConsoleColor.Red, true);
+            if (isAI)
+            {
+                player2 = new Player("AI", '*', ConsoleColor.Red, true);
+            }
+            else
+            {
+                UI.RequestInput("Player 2 name:");
+                string name = Console.ReadLine();
+                UI.RequestInput("Player 2 piece (choose a single character):");
+                string chr = Console.ReadLine();
+                player2 = new Player(name, chr[0], ConsoleColor.Red, false);
+            }
         }
 
         /// <summary>
@@ -105,8 +117,11 @@ namespace Connect_4
         /// </summary>
         public static void StartGame()
         {
-            while (true)
+            gameWon = false;
+
+            while (!gameWon)
             {
+                // Player 1's turn
                 UI.DisplayTitle("Here is your gameboard:");
 
                 gameBoard.DisplayGameBoard();
@@ -114,16 +129,20 @@ namespace Connect_4
                 Console.WriteLine();
 
                 UI.DisplayNotice($"{player1.GetName()}'s turn!");
-                gameBoard.TakeTurn(player1);
+                gameBoard.TakeTurn(player1, ref gameWon);
 
-                UI.DisplayTitle("Here is your gameboard:");
+                // Player 2's turn
+                if (!gameWon)
+                {
+                    UI.DisplayTitle("Here is your gameboard:");
 
-                gameBoard.DisplayGameBoard();
+                    gameBoard.DisplayGameBoard();
 
-                Console.WriteLine();
+                    Console.WriteLine();
 
-                UI.DisplayNotice($"{player2.GetName()}'s turn!");
-                gameBoard.TakeTurn(player2);
+                    UI.DisplayNotice($"{player2.GetName()}'s turn!");
+                    gameBoard.TakeTurn(player2, ref gameWon);
+                }
             }
         }
 
@@ -317,7 +336,7 @@ namespace Connect_4
             // Pieces to the top left
             try
             {
-                oneTopLeft = board[row - 1, col -1].GetBoardGamePiece();
+                oneTopLeft = board[row - 1, col - 1].GetBoardGamePiece();
             }
             catch
             {

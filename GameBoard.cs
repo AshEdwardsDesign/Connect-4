@@ -61,10 +61,9 @@ namespace Connect_4
             return w;
         }
 
-        public void TakeTurn(Player player)
+        public void TakeTurn(Player player, ref bool gameWon)
         {
             moveMade = false;
-            gameWon = false;
 
             while (!moveMade && !gameWon)
             {
