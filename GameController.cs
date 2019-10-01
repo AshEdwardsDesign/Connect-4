@@ -4,7 +4,7 @@ namespace Connect_4
 {
     public static class GameController
     {
-        private static GameBoard gameBoard;
+        internal static GameBoard gameBoard;
         public static Player player1;
         public static Player player2;
         private static bool gameWon = false;
@@ -121,6 +121,7 @@ namespace Connect_4
 
             while (!gameWon)
             {
+                Console.Clear();
                 // Player 1's turn
                 UI.DisplayTitle("Here is your gameboard:");
 

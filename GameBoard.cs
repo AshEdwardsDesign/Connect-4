@@ -117,6 +117,11 @@ namespace Connect_4
                 else
                 {
                     board[i, col] = player.GetGamePiece();
+                    Console.Clear();
+                    UI.DisplayTitle("Here is your gameboard...");
+                    GameController.gameBoard.DisplayGameBoard();
+                    Console.WriteLine();
+
                     moveMade = true;
                     UI.DisplayNotice($"Piece placed in column {col} at position {i}");
                     if (GameController.isWinningMove(player, board, col, i))
