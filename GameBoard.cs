@@ -61,6 +61,8 @@ namespace Connect_4
             return w;
         }
 
+        public int GetNumberOfRows() { return h; }
+
         public void TakeTurn(Player player, ref bool gameWon)
         {
             moveMade = false;
@@ -82,7 +84,7 @@ namespace Connect_4
 
                             if (col >= w)
                             {
-                                UI.DisplayWarning($"The number you've entered is too high. The highest column number is {w-1}. Press enter to continue...");
+                                UI.DisplayWarning($"The number you've entered is too high. The highest column number is {w - 1}. Press enter to continue...");
                                 invalidCol = true;
                             }
                         }
@@ -95,7 +97,7 @@ namespace Connect_4
                 }
                 else
                 {
-                    gameWon = makeMove(player.ChooseMove(this), player);
+                    gameWon = makeMove(player.ChooseAIMove(this), player);
                 }
             }
 
@@ -140,6 +142,11 @@ namespace Connect_4
             }
             UI.DisplayWarning($"ERROR: Column {col} is full. Please choose again");
             return false;
+        }
+
+        public GamePiece[,] getGameBoard()
+        {
+            return board;
         }
     }
 }

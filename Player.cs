@@ -53,9 +53,20 @@ namespace Connect_4
         /// </summary>
         /// <param name="gb"></param>
         /// <returns></returns>
-        public int ChooseMove(GameBoard gb)
+        public int ChooseAIMove(GameBoard gb)
         {
+            //Loop over each column and determine if it's a winning move, if so, take it... 
+            for (int x = 0; x < gb.GetNumberOfColumns(); x++)
+            {
+                for (int y = 0; y < gb.GetNumberOfRows(); y++)
+                GameController.isWinningMove(this, gb.getGameBoard(), x, y);
+                    }
+
+            // If no winning move exists, check to see if the opponent has any winning moves available and take it if so (to prevent victory)...
+
+            // Pick a random column if no better moves exist...
             return rand.Next(gb.GetNumberOfColumns());
         }
+
     }
 }
